@@ -1,0 +1,20 @@
+# Big Data & Models
+datasets/
+f5_tts_repo/ckpts/
+*.pt
+*.safetensors
+*.wav
+*.mp3
+*.m4a
+
+# Environment & Logs
+venv/
+*.log
+*.txt
+*.tmp
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Project metadata
+.ssh/
