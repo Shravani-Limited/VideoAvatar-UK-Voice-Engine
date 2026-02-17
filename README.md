@@ -1,10 +1,27 @@
-# VideoAvatar.ai: UK Regional Voice Engine 🎙️🇬🇧
+# VideoAvatar.ai: UK Regional Voice Engine (v2 - 420k) 🎙️🇬🇧
 
-Master the art of regional British voice cloning with VideoAvatar.ai. This repository contains the core processing, training, and inference scripts for the **VideoAvatar UK Regional Model (v1)**.
+Master the art of regional British voice cloning with VideoAvatar.ai. This repository contains the core configuration and documentation for the **VideoAvatar UK Regional Model (v2)**.
 
 ## 🚀 Model & Brain
-The neural weights for this engine are hosted on Hugging Face due to their large size:
-🔗 **[Download Model Weights (Hugging Face)](https://huggingface.co/Shravani-Limited/VideoAvatar-UK-Voice-Engine)**
+The neural weights for this engine are hosted on Hugging Face:
+🔗 **[Download v2 Model Weights (Hugging Face)](https://huggingface.co/Shravani-Limited/VideoAvatar-UK-Voice-Engine)**
+
+> **Version 2.0 (Step 420,000)** - Released Feb 17, 2026.
+> Improved prosody, stability, and vocabulary handling.
+
+## 🚨 CRITICAL USAGE INSTRUCTION
+**You MUST set `text_mask_padding=False` in your inference configuration.**
+Failure to do so will result in "fast" or "scrambled" speech (chipmunk effect).
+
+Use the included `config_v2.yaml` which has this setting correctly applied.
+
+```bash
+# Example Inference Command
+python3 infer_cli.py \
+    --model_cfg config_v2.yaml \
+    --ckpt_file uk_regional_v2_420k.pt \
+    ...
+```
 
 ## 🌟 Key Features
 - **Zero-Shot Voice Cloning**: Clone any voice with just 5-10 seconds of source audio.
@@ -12,11 +29,9 @@ The neural weights for this engine are hosted on Hugging Face due to their large
 - **Commercial Integrity**: 100% trained on commercially compliant, ethically sourced datasets.
 - **Contextual Delivery**: Optimized for Business, Storytelling, Education, and Customer Service tones.
 
-## 🛠️ Included Tools
-- **`process_vctk_regional.py`**: High-performance data filtering and metadata generation.
-- **`clone_harish_voice.sh`**: One-click script to clone a user voice from an M4A/WAV sample.
-- **`generate_diverse_samples.sh`**: Benchmarking suite for multi-accent generation.
-- **`run_perfection_suite.sh`**: Advanced fine-tuning and validation pipeline.
+## 🛠️ Included Files
+- **`config_v2.yaml`**: The verified configuration file for the v2 model.
+- **`samples/`**: Example audio generated with this model.
 
 ## 📦 Installation & Setup
 1. Clone the repository:
@@ -24,10 +39,8 @@ The neural weights for this engine are hosted on Hugging Face due to their large
    git clone https://github.com/Shravani-Limited/VideoAvatar-UK-Voice-Engine.git
    cd VideoAvatar-UK-Voice-Engine
    ```
-2. Install dependencies (Requires Python 3.10+ and CUDA):
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. Download the model checkpoint from Hugging Face.
+3. Install the F5-TTS dependencies.
 
 ## ⚖️ License
 This project is released under the **Apache 2.0 License**.

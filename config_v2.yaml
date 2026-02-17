@@ -1,0 +1,71 @@
+base_model:
+  attn_mask_enabled: false
+  conv_layers: 4
+  depth: 22
+  dim: 1024
+  ff_mult: 2
+  heads: 16
+  pe_attn_head: 1
+  text_dim: 512
+  text_mask_padding: false
+ckpts:
+  keep_last_n_checkpoints: 3
+  last_per_updates: 1000
+  log_samples: false
+  logger: wandb
+  save_dir: ckpts/uk_regional
+  save_per_updates: 5000
+dataset:
+  audio_folder: ''
+  dataset_type: CustomDatasetPath
+  hop_length: 256
+  mel_fmax: 8000
+  mel_fmin: 0
+  n_mel_channels: 100
+  name: /home/ubuntu/regional_voice_engine/datasets/uk_dialects/arrow_data
+  sample_rate: 24000
+  tokenizer: char
+  vocab_file: /home/ubuntu/regional_voice_engine/datasets/uk_dialects/arrow_data/vocab.txt
+datasets:
+  batch_size_per_gpu: 4
+  batch_size_type: sample
+  max_samples: 16
+  name: /home/ubuntu/regional_voice_engine/datasets/uk_dialects/arrow_data
+  num_workers: 2
+generated_tracker_name:
+  name: F5-TTS-UK-Regional
+hydra:
+  run:
+    dir: ckpts/uk_regional/${now:%Y-%m-%d}/${now:%H-%M-%S}
+model:
+  arch:
+    attn_mask_enabled: false
+    conv_layers: 4
+    depth: 22
+    dim: 1024
+    ff_mult: 2
+    heads: 16
+    pe_attn_head: 1
+    text_dim: 512
+    text_mask_padding: false
+  backbone: DiT
+  mel_spec:
+    hop_length: 256
+    mel_spec_type: vocos
+    n_fft: 1024
+    n_mel_channels: 100
+    target_sample_rate: 24000
+    win_length: 1024
+  name: F5TTS_UK
+  tokenizer: custom
+  tokenizer_path: /home/ubuntu/regional_voice_engine/datasets/uk_dialects/arrow_data/vocab.txt
+  vocoder:
+    is_local: false
+    local_path: null
+optim:
+  bnb_optimizer: false
+  epochs: 10000
+  grad_accumulation_steps: 4
+  learning_rate: 7.5e-05
+  max_grad_norm: 1.0
+  num_warmup_updates: 5000
